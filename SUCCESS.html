@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Successful</title>
+    <style>
+        /* Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('valo.jpg'); /* Background image */
+            background-size: cover; /* Cover the whole screen */
+            background-position: center; /* Center the background image */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container Styles */
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Dashboard Container */
+        .dashboard-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Heading Styles */
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Button Styles */
+        .logout-button {
+            padding: 10px 20px;
+            background-color: #6f42c1; /* Purple color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .logout-button:hover {
+            background-color: #5a2e9f; /* Darker purple on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-container">
+            <h1>Login Successful!</h1>
+            <p>Welcome, <span id="display-username"></span></p>
+            <p>Your email: <span id="display-email"></span></p>
+            <button onclick="logout()" class="logout-button">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('display-username').textContent = localStorage.getItem('username') || "Guest";
+        document.getElementById('display-email').textContent = localStorage.getItem('email') || "Not available";
+
+        function logout() {
+            localStorage.removeItem('username');
+            localStorage.removeItem('email');
+            window.location.href = 'index.html'; 
+        }
+
+        // Redirect if not logged in
+        if (!localStorage.getItem('username')) {
+            window.location.href = 'index.html'; 
+        }
+    </script>
+</body>
+</html>

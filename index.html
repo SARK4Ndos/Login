@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS -->
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="show-password">
+            <input type="checkbox" id="showPassword">
+            <label for="showPassword">Show Password</label>
+        </div>
+        <input type="submit" value="Login">
+        <div class="error" id="errorMessage"></div>
+    </form>
+   
+    <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="sign_in_with" data-size="large" data-logo_alignment="left"></div>
+</div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script>
+    function decodeJwt(token) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        return JSON.parse(jsonPayload);
+    }
+
+    function handleCredentialResponse(response) {
+        const jwt = response.credential;
+        if (jwt) {
+            const userInfo = decodeJwt(jwt);
+            
+            localStorage.setItem('username', userInfo.name);
+            localStorage.setItem('email', userInfo.email);
+
+            window.location.href = "SUCCESS.html";
+        }
+    }
+
+    document.getElementById('showPassword').addEventListener('change', function() {
+        const passwordField = document.getElementById('password');
+        if (this.checked) {
+            passwordField.type = 'text'; 
+        } else {
+            passwordField.type = 'password';
+        }
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('errorMessage');
+
+        if (username === 'Ken' && password === 'Magno') {
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+            window.location.href = 'SUCCESS.html'; 
+        } else {
+            errorMessage.textContent = 'Invalid username or password!';
+        }
+    });
+
+    window.onload = function() {
+        google.accounts.id.initialize({
+            client_id: '147956044666-1deeqospg1eq7m9pert58v3lgmttve3i.apps.googleusercontent.com', 
+            callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+            document.querySelector('.g_id_signin'),
+            { theme: 'outline', size: 'large' }  
+        );
+        google.accounts.id.prompt(); 
+    };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('valo.jpg'); /* Background image */
+    background-size: cover; /* Cover the whole screen */
+    background-position: center; /* Center the background image */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Login Container */
+.login-container,
+.success-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 300px;
+}
+
+/* Headings */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Label */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="password"]{
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #6f42c1; /* Purple color on focus */
+}
+
+/* Submit Button */
+input[type="submit"] {
+    background-color: #6f42c1; /* Purple color */
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #5a2e9f; 
+}
+
+/* Error Message */
+.error {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Show Password Section */
+.show-password {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.show-password input {
+    width: auto;
+    margin-right: 5px;
+}
+
+/* Success Container */
+.success-container {
+    text-align: center;
+}
+
+/* Button in Success Page */
+.success-container button {
+    padding: 10px;
+    background-color: #6f42c1; /* Purple color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.success-container button:hover {
+    background-color: #5a2e9f;
+}
